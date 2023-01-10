@@ -1,6 +1,6 @@
-const express = require('express');
 const axios = require('axios');
 const getUsername = async(req,res)=>{
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const {username} = req.params;
         const githubUserName = username.toLowerCase();
@@ -14,6 +14,7 @@ const getUsername = async(req,res)=>{
    
 }
 const getUserRepositories = async(req,res)=>{
+    res.set('Access-Control-Allow-Origin', '*');
     try {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 10;
