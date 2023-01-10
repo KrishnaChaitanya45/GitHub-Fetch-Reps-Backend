@@ -24,6 +24,7 @@ const getUserRepositories = async(req,res)=>{
         const username = req.cookies.UserId;
         const response = await axios.get(`https://api.github.com/users/${username}/repos`);
         const repos = await response.data;
+        const noOfPages = Math.ceil(repos.length / limit);
         if(end < repos.length){
             results.next = {
                 page:page+1,
@@ -38,7 +39,7 @@ const getUserRepositories = async(req,res)=>{
         }
         
         results.result = repos.slice(start,end);
-        return res.status(200).json({msg:"Fetched Successfully",repos:results});
+        return res.status(200).json({msg:"Fetched Successfully",repos:results,noOfPages:noOfPages});
     } catch (error) {
         return res.status(404).json({msg:"Failed to fetch"});
         
