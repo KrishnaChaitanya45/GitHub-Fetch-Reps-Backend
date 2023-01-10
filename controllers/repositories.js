@@ -21,7 +21,7 @@ const getUserRepositories = async(req,res)=>{
         const start = (page-1) * limit;
         const end = page*limit;
         const results = {};
-        const username = req.cookies.UserId;
+        const {username} = req.params;
         const response = await axios.get(`https://api.github.com/users/${username}/repos`);
         const repos = await response.data;
         const noOfPages = Math.ceil(repos.length / limit);
