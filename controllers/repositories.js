@@ -39,7 +39,7 @@ const getUserRepositories = async(req,res)=>{
         }
         
         results.result = repos.slice(start,end);
-        return res.status(200).json({msg:"Fetched Successfully",repos:results,noOfPages:noOfPages});
+        return res.status(200).json({msg:"Fetched Successfully",repos:results,maxPages:noOfPages});
     } catch (error) {
         return res.status(404).json({msg:"Failed to fetch"});
         
